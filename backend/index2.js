@@ -95,6 +95,19 @@ function authMiddleware(req, res, next) {
   }
 }
 
+//---------------------USERS------------------------
+
+app.get("/users", authMiddleware, async (req, res) => {
+  try {
+    const result = await pool.query("SELECT id, username FROM users");
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Users fetch error", err.message);
+    res.status(500).send("Error fetching users");
+  }
+});
+
+
 // -------------------- RECIPES --------------------
 
 // Get all recipes (protegido)
