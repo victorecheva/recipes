@@ -1,29 +1,19 @@
-/* Home.css */
-.home-container {
-  text-align: center;
-  margin-top: 100px;
+.home {
+  display: flex;
+  height: 100vh;
 }
 
-.home-title {
-  color: #333;
-  font-size: 2rem;
+.home-content {
+  flex: 1;
+  padding: 32px;
+  background-color: #f4f4f4;
 }
 
-.home-paragraph {
-  color: #666;
-  font-size: 1.2rem;
+.home-content h1 {
+  font-size: 28px;
+  margin-bottom: 16px;
 }
 
-.home-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.home-button:hover {
-  background-color: #0056b3;
+.home-content p {
+  font-size: 18px;
 }

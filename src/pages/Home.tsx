@@ -3,11 +3,13 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import "./Home.css";
 import User from "../models/User";  
+import UserDetail from "../components/UserDetail";
+
 
 const Home: React.FC = () => {
-      
 
   const [users, setUsers] = useState<User[]>([]);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null); 
   const token = localStorage.getItem("auth_token");
 
   useEffect(() => {
@@ -41,16 +43,21 @@ const Home: React.FC = () => {
 
       
   return (
-    <div className="flex">
+    <div className="home">
       {/* Sidebar */}
       {/* <Sidebar users={users} /> */}
-      <Sidebar users={users} />
+      <Sidebar users={users} onUserSelect={(u) => setSelectedUser(u)} />
 
       {/* Contenido principal */}
-      <div className="flex-1 p-8">
-        <h1 className="text-3xl font-bold mb-4">Welcome to the Home Page!</h1>
-        <p className="mb-4">Esta ruta ahora está protegida.</p>
-        {/* Aquí irá tu contenido dinámico */}
+      <div className="home-content">
+        {selectedUser ? (
+          <UserDetail user={selectedUser} />
+        ) : (
+          <>
+            <h1>Welcome to the Home Page!</h1>
+            <p>Selecciona un usuario para ver sus detalles.</p>
+          </>
+        )}
       </div>
     </div>
   );
